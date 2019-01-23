@@ -1,0 +1,27 @@
+spring:
+  http:
+    encoding:
+      force-response: true
+  main:
+    banner-mode: "off"
+
+mybatis:
+  configuration:
+    use-generated-keys: true
+    use-column-label: true
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+  type-aliases-package: com.example.javademo.pojo.domain
+  mapper-locations: classpath:com.hand.infra.mapper/**.xml
+
+mapper:
+  mappers:
+  - com.example.javademo.util.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

@@ -1,0 +1,20 @@
+version: "2"
+services:
+  mysql:
+    image:mysql
+    build: ./docker/mysql
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+  java:
+    container_name: java-sakila
+    image: javatest/java-sakila:0.0.1
+    build: ./docker/java
+    depends_on:
+    - mysql
+    links:
+    - mysql
+    command: sh start.sh
+    ports:
+    - 80:80
